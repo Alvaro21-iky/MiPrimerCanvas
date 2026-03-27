@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi Web con Canvas</title>
+    <title>Mi Canvas Animado</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f0f0f0; }
+        canvas { background-color: white; box-shadow: 0px 0px 20px rgba(0,0,0,0.2); }
+    </style>
 </head>
 <body>
-    <h1>¡Hola Mundo desde mi Canvas!</h1>
-    <canvas id="miLienzo" width="200" height="100" style="border:1px solid #000000;">
-        Tu navegador no soporta el elemento canvas.
-    </canvas>
+    <h1>¡Mira mi Canvas en acción! 🚀</h1>
+    <canvas id="miLienzo" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('miLienzo');
+        const ctx = canvas.getContext('2d');
+        let hue = 0;
+
+        function dibujar() {
+            // Limpiamos el lienzo
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Elegimos un color que cambia
+            ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+            
+            // Dibujamos un cuadrado en el centro
+            ctx.fillRect(100, 100, 200, 200);
+            
+            hue++; // Cambiamos el color para el siguiente cuadro
+            requestAnimationFrame(dibujar); // Esto crea la animación
+        }
+
+        dibujar();
+    </script>
 </body>
 </html>
