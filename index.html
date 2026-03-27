@@ -1,36 +1,313 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Mi Canvas Animado</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lockton Perú | Portal de Valor Estratégico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f0f0f0; }
-        canvas { background-color: white; box-shadow: 0px 0px 20px rgba(0,0,0,0.2); }
-    </style>
-</head>
-<body>
-    <h1>¡Mira mi Canvas en acción! 🚀</h1>
-    <canvas id="miLienzo" width="400" height="400"></canvas>
-
-    <script>
-        const canvas = document.getElementById('miLienzo');
-        const ctx = canvas.getContext('2d');
-        let hue = 0;
-
-        function dibujar() {
-            // Limpiamos el lienzo
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Elegimos un color que cambia
-            ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-            
-            // Dibujamos un cuadrado en el centro
-            ctx.fillRect(100, 100, 200, 200);
-            
-            hue++; // Cambiamos el color para el siguiente cuadro
-            requestAnimationFrame(dibujar); // Esto crea la animación
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .lockton-blue { color: #003366; }
+        .bg-lockton-blue { background-color: #003366; }
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); }
+        
+        /* Estilo para el "+" degradado azul/rosado */
+        .gradient-plus {
+            background: linear-gradient(135deg, #00aced 0%, #e11d48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
-        dibujar();
-    </script>
+        /* Pilares Quierete+ Colors */
+        .pilar-seguro { border-color: #00aced; color: #00aced; }
+        .pilar-saludable { border-color: #00b050; color: #00b050; }
+        .pilar-pleno { border-color: #ffc000; color: #ffc000; }
+        .pilar-organizado { border-color: #7f7f7f; color: #7f7f7f; }
+
+        .phone-shadow { box-shadow: 0 50px 100px -20px rgba(0,0,0,0.3); }
+        .news-card { transition: all 0.3s ease; }
+        .news-card:hover { transform: translateX(10px); background-color: #f8fafc; }
+    </style>
+</head>
+<body class="bg-[#FDFDFD] text-slate-900">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#inicio" class="flex items-center">
+                <!-- Logo LOCKTON -->
+                <svg width="150" height="32" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="62" letter-spacing="-2" fill="black">LOCKTON</text>
+                    <circle cx="380" cy="30" r="8" fill="#003366" />
+                </svg>
+            </a>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold tracking-[0.15em] uppercase text-slate-500">
+                <a href="#inicio" class="hover:text-black transition">Inicio</a>
+                <a href="#logros" class="hover:text-black transition">Nuestros Logros</a>
+                <a href="#servicios" class="hover:text-black transition">Servicios</a>
+                <a href="#quierete" class="hover:text-black transition">Quiérete +</a>
+                <a href="#aplicativo" class="hover:text-black transition">Aplicativo</a>
+            </div>
+
+            <button class="bg-black text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase hover:bg-zinc-800 transition">Portal Cliente</button>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN: INICIO (Hero con Noticias) -->
+    <section id="inicio" class="pt-32 pb-20 px-6 min-h-[85vh] flex items-center bg-gradient-to-b from-white to-slate-50">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <!-- Texto de Bienvenida -->
+                <div class="flex-[1.2]">
+                    <h1 class="text-4xl lg:text-6xl font-bold tracking-tighter mb-6 leading-[1.1]">
+                        ¡Hola <span class="text-blue-900">Cliente</span>!
+                    </h1>
+                    <p class="text-xl text-slate-600 font-medium leading-relaxed mb-6">
+                        Para <span class="text-black font-bold underline decoration-blue-100">Lockton Perú</span> es un orgullo poder trabajar con ustedes. Estamos seguros que agregaremos valor a su negocio como sus asesores y corredores de seguros.
+                    </p>
+                    <p class="text-slate-500 leading-relaxed max-w-2xl mb-4">
+                        Estamos encantados de otorgarles un servicio que supere sus expectativas, adaptado a sus necesidades. Nos apasiona asesorarlos para fomentar el bienestar de sus colaboradores y el logro de sus objetivos estratégicos.
+                    </p>
+                </div>
+
+                <!-- Card de Noticias de Hoy -->
+                <div class="flex-1 w-full lg:w-auto">
+                    <div class="bg-white p-8 rounded-[48px] shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                        
+                        <div class="flex justify-between items-center mb-8 relative z-10">
+                            <h4 class="text-sm font-extrabold uppercase tracking-widest text-slate-900 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Noticias de hoy
+                            </h4>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Actualizado</span>
+                        </div>
+
+                        <div class="space-y-4 relative z-10">
+                            <div class="news-card p-4 rounded-2xl border border-transparent cursor-pointer">
+                                <p class="text-[10px] font-bold text-blue-600 uppercase mb-1">Mercado</p>
+                                <h5 class="text-sm font-bold text-slate-800 mb-1 leading-tight">Tendencias en Ciberseguridad industrial.</h5>
+                                <p class="text-xs text-slate-400">Lockton analiza los riesgos digitales 2024...</p>
+                            </div>
+                            <div class="news-card p-4 rounded-2xl border border-transparent cursor-pointer">
+                                <p class="text-[10px] font-bold text-emerald-600 uppercase mb-1">Bienestar</p>
+                                <h5 class="text-sm font-bold text-slate-800 mb-1 leading-tight">Nuevas coberturas de Salud Mental.</h5>
+                                <p class="text-xs text-slate-400">Mejorando la retención de talento en Perú...</p>
+                            </div>
+                        </div>
+
+                        <button class="w-full mt-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 border-t border-slate-50 hover:text-black transition">Explorar más noticias</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: LOGROS -->
+    <section id="logros" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 tracking-tighter">Hitos de Valor Lockton Perú</h2>
+                <div class="h-1 w-20 bg-blue-900 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 uppercase text-[10px] tracking-[0.3em] font-bold">Respaldo Internacional • Gestión Local</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-slate-50 p-12 rounded-[50px] transition hover:bg-white hover:shadow-xl hover:shadow-slate-100">
+                    <div class="text-6xl font-extrabold text-blue-900 mb-4 tracking-tighter">65%</div>
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 leading-tight">Cumplimiento de Oferta <br><span class="text-blue-900">DE VALOR</span></p>
+                </div>
+                <div class="bg-slate-50 p-12 rounded-[50px] transition hover:bg-white hover:shadow-xl hover:shadow-slate-100">
+                    <div class="text-6xl font-extrabold text-slate-900 mb-4 tracking-tighter">+80</div>
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Colaboradores <br>Altamente Expertos</p>
+                </div>
+                <div class="bg-slate-50 p-12 rounded-[50px] transition hover:bg-white hover:shadow-xl hover:shadow-slate-100">
+                    <div class="text-6xl font-extrabold text-slate-900 mb-4 tracking-tighter">+300</div>
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Clientes que <br>Confían en Nosotros</p>
+                </div>
+                <div class="bg-lockton-blue p-12 rounded-[50px] shadow-2xl shadow-blue-200 text-white transform md:-translate-y-4">
+                    <div class="text-4xl font-extrabold mb-4 italic tracking-widest">GLOBAL</div>
+                    <p class="text-[11px] font-bold uppercase tracking-widest text-blue-200">Soporte Estratégico <br>Sin Fronteras</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: SERVICIOS -->
+    <section id="servicios" class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16 text-center lg:text-left">
+                <h2 class="text-5xl font-bold mb-4 tracking-tighter">Estrategias de Protección</h2>
+                <p class="text-slate-500 max-w-lg">Diseñamos soluciones a medida para los desafíos operativos y humanos más exigentes de la industria.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="p-12 rounded-[60px] bg-white shadow-sm border border-slate-100 group">
+                    <div class="flex justify-between items-start mb-10">
+                        <div class="text-5xl">👥</div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full">Gestión de Talento</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-6">Riesgos HUMANOS</h3>
+                    <ul class="space-y-4 text-slate-600 text-sm mb-12">
+                        <li class="flex items-center gap-3 font-semibold text-black"><span class="w-2 h-2 bg-blue-600 rounded-full"></span> EPS / Planes de Salud Integrales</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 bg-blue-400 rounded-full"></span> SCTR (Salud y Pensión)</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 bg-blue-400 rounded-full"></span> Vida Ley / Accidentes Personales</li>
+                    </ul>
+                    <button class="w-full bg-slate-50 text-black font-bold py-4 rounded-2xl hover:bg-black hover:text-white transition">Detalles del Servicio</button>
+                </div>
+
+                <div class="p-12 rounded-[60px] bg-white shadow-sm border border-slate-100 group">
+                    <div class="flex justify-between items-start mb-10">
+                        <div class="text-5xl">🏢</div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100 px-4 py-1.5 rounded-full">Gestión Operativa</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-6">Riesgos GENERALES</h3>
+                    <ul class="space-y-4 text-slate-600 text-sm mb-12">
+                        <li class="flex items-center gap-3 font-semibold text-black"><span class="w-2 h-2 bg-slate-900 rounded-full"></span> Seguros Patrimoniales (Multiriesgo)</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 bg-slate-500 rounded-full"></span> Responsabilidad Civil Gerencial</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 bg-slate-500 rounded-full"></span> Flota de Vehículos Corporativa</li>
+                    </ul>
+                    <button class="w-full bg-black text-white font-bold py-4 rounded-2xl hover:bg-zinc-800 transition">Solicitar Consultoría</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: QUIÉRETE + -->
+    <section id="quierete" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-20 items-center mb-20">
+                <div class="flex-1">
+                    <div class="flex items-center gap-6 mb-8">
+                        <h2 class="text-6xl font-extrabold tracking-tighter">Quiérete <span class="gradient-plus">+</span></h2>
+                        <span class="h-10 w-[2px] bg-slate-200"></span>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] leading-tight">Modelo de <br>Intervención Integral</div>
+                    </div>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                        Nuestra propuesta se basa en entender qué es lo que el colaborador y su familia necesita de soporte para lograr una mejor calidad de vida integral en los aspectos de seguridad, salud física y mental, social y financiera.
+                    </p>
+                    <div class="bg-slate-50 p-10 rounded-[50px] border border-slate-100 mb-10">
+                        <h4 class="font-bold text-xl mb-4">Propuesta de Valor</h4>
+                        <p class="text-slate-500 leading-relaxed mb-6">Estrategias diseñadas por un equipo multidisciplinario para fortalecer el vínculo entre la empresa y su capital humano.</p>
+                        <a href="#" class="inline-block bg-black text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl hover:bg-zinc-800 transition">Ver mi propuesta de valor</a>
+                    </div>
+                </div>
+
+                <!-- Los 4 Pilares (Emojis Centrados) -->
+                <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+                    <div class="p-10 bg-white border-2 rounded-[40px] pilar-seguro text-center transition hover:shadow-xl">
+                        <div class="text-5xl mb-6 mx-auto">👷‍♂️</div>
+                        <h4 class="font-extrabold text-[11px] uppercase tracking-widest mb-3">QUIÉRETE + SEGURO</h4>
+                        <p class="text-[12px] opacity-70 leading-tight font-medium">Estrategias de Seguridad y Salud en el Trabajo.</p>
+                    </div>
+                    <div class="p-10 bg-white border-2 rounded-[40px] pilar-saludable text-center transition hover:shadow-xl">
+                        <div class="text-5xl mb-6 mx-auto">🏃‍♂️</div>
+                        <h4 class="font-extrabold text-[11px] uppercase tracking-widest mb-3">QUIÉRETE + SALUDABLE</h4>
+                        <p class="text-[12px] opacity-70 leading-tight font-medium">Prevención proactiva en salud y nutrición.</p>
+                    </div>
+                    <div class="p-10 bg-white border-2 rounded-[40px] pilar-pleno text-center transition hover:shadow-xl">
+                        <div class="text-5xl mb-6 mx-auto">🧠</div>
+                        <h4 class="font-extrabold text-[11px] uppercase tracking-widest mb-3">QUIÉRETE + PLENO</h4>
+                        <p class="text-[12px] opacity-70 leading-tight font-medium">Cuidado y promoción de la salud mental.</p>
+                    </div>
+                    <div class="p-10 bg-white border-2 rounded-[40px] pilar-organizado text-center transition hover:shadow-xl">
+                        <div class="text-5xl mb-6 mx-auto">🧮</div>
+                        <h4 class="font-extrabold text-[11px] uppercase tracking-widest mb-3">QUIÉRETE + ORGANIZADO</h4>
+                        <p class="text-[12px] opacity-70 leading-tight font-medium">Fortalecimiento de la salud financiera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: APLICATIVO -->
+    <section id="aplicativo" class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="flex-1">
+                    <h2 class="text-6xl font-bold tracking-tighter mb-8 leading-tight">El control total, <br><span class="text-blue-400 italic">siempre con usted.</span></h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-10 max-w-lg">
+                        Gestionar sus pólizas nunca fue tan intuitivo. Acceda a reembolsos, red de clínicas y soporte global con tecnología de vanguardia.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <div class="group bg-white text-black px-8 py-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-slate-100 transition shadow-2xl">
+                            <span class="text-3xl">🍎</span>
+                            <div class="text-left"><p class="text-[10px] uppercase opacity-50 font-bold">App Store</p><p class="text-sm font-extrabold">Descargar</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Celular Premium -->
+                <div class="flex-1 flex justify-center">
+                    <div class="w-80 h-[600px] bg-zinc-950 rounded-[60px] border-[10px] border-zinc-800 shadow-[0_0_100px_rgba(59,130,246,0.3)] overflow-hidden relative">
+                        <div class="w-full h-full bg-slate-50 flex flex-col">
+                            <div class="h-8 w-full bg-zinc-800 flex justify-center items-end pb-1.5">
+                                <div class="w-20 h-5 bg-black rounded-full"></div>
+                            </div>
+                            <div class="p-8 space-y-8 flex-1">
+                                <div class="bg-blue-900 h-44 rounded-[40px] p-8 text-white flex flex-col justify-end">
+                                    <p class="text-2xl font-bold tracking-tighter">Póliza Activa</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="h-24 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center justify-center text-2xl">🏥</div>
+                                    <div class="h-24 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center justify-center text-2xl">📑</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Premium -->
+    <footer class="bg-white pt-24 pb-12 px-6 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 md:col-span-1">
+                    <svg width="120" height="25" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" class="mb-8 opacity-90">
+                        <text x="0" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="62" letter-spacing="-2" fill="black">LOCKTON</text>
+                    </svg>
+                    <p class="text-xs text-slate-400 leading-relaxed font-medium">
+                        El corredor de seguros independiente más grande del mundo. Una perspectiva diferente centrada exclusivamente en el valor.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Navegación</h5>
+                    <ul class="space-y-4 text-xs font-semibold text-slate-500">
+                        <li><a href="#inicio" class="hover:text-blue-900 transition">Inicio</a></li>
+                        <li><a href="#logros" class="hover:text-blue-900 transition">Hitos de Valor</a></li>
+                        <li><a href="#servicios" class="hover:text-blue-900 transition">Servicios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Contacto</h5>
+                    <ul class="space-y-4 text-xs font-semibold text-slate-500">
+                        <li class="flex items-center gap-2">📍 Lima, Perú</li>
+                        <li class="flex items-center gap-2">✉️ contacto@lockton.com.pe</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Redes</h5>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition italic">in</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] font-bold text-slate-300 uppercase tracking-[0.3em]">
+                    &copy; 2024 Lockton Perú. Todos los derechos reservados.
+                </p>
+                <div class="flex space-x-8 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <a href="#" class="hover:text-black transition">Privacidad</a>
+                    <a href="#" class="hover:text-black transition">Soporte</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
