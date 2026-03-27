@@ -29,6 +29,8 @@
         .phone-shadow { box-shadow: 0 50px 100px -20px rgba(0,0,0,0.3); }
         .news-card { transition: all 0.3s ease; }
         .news-card:hover { transform: translateX(10px); background-color: #f8fafc; }
+        
+        #canvas-bg { position: absolute; top: 0; left: 0; z-index: 0; pointer-events: none; }
     </style>
 </head>
 <body class="bg-[#FDFDFD] text-slate-900">
@@ -56,9 +58,12 @@
         </div>
     </nav>
 
-    <!-- SECCIÓN: INICIO (Hero con Noticias) -->
-    <section id="inicio" class="pt-32 pb-20 px-6 min-h-[85vh] flex items-center bg-gradient-to-b from-white to-slate-50">
-        <div class="max-w-7xl mx-auto w-full">
+    <!-- SECCIÓN: INICIO (Hero con Canvas Inteligente) -->
+    <section id="inicio" class="relative pt-32 pb-20 px-6 min-h-[85vh] flex items-center overflow-hidden bg-white border-b border-slate-50">
+        <!-- Canvas de Líneas Inteligentes -->
+        <canvas id="canvas-bg"></canvas>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-20">
                 <!-- Texto de Bienvenida -->
                 <div class="flex-[1.2]">
@@ -75,21 +80,19 @@
 
                 <!-- Card de Noticias de Hoy -->
                 <div class="flex-1 w-full lg:w-auto">
-                    <div class="bg-white p-8 rounded-[48px] shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                        
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-[48px] shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
                         <div class="flex justify-between items-center mb-8 relative z-10">
                             <h4 class="text-sm font-extrabold uppercase tracking-widest text-slate-900 flex items-center gap-2">
                                 <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Noticias de hoy
                             </h4>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase">Actualizado</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">En vivo</span>
                         </div>
 
                         <div class="space-y-4 relative z-10">
                             <div class="news-card p-4 rounded-2xl border border-transparent cursor-pointer">
                                 <p class="text-[10px] font-bold text-blue-600 uppercase mb-1">Mercado</p>
                                 <h5 class="text-sm font-bold text-slate-800 mb-1 leading-tight">Tendencias en Ciberseguridad industrial.</h5>
-                                <p class="text-xs text-slate-400">Lockton analiza los riesgos digitales 2024...</p>
+                                <p class="text-xs text-slate-400">Lockton analiza los riesgos digitales...</p>
                             </div>
                             <div class="news-card p-4 rounded-2xl border border-transparent cursor-pointer">
                                 <p class="text-[10px] font-bold text-emerald-600 uppercase mb-1">Bienestar</p>
@@ -98,15 +101,15 @@
                             </div>
                         </div>
 
-                        <button class="w-full mt-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 border-t border-slate-50 hover:text-black transition">Explorar más noticias</button>
+                        <button class="w-full mt-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 border-t border-slate-50 hover:text-black transition">Explorar centro de noticias</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN: LOGROS -->
-    <section id="logros" class="py-24 bg-white">
+    <!-- SECCIÓN: LOGROS (Fondo Gris Suave) -->
+    <section id="logros" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4 tracking-tighter">Hitos de Valor Lockton Perú</h2>
@@ -114,15 +117,15 @@
                 <p class="text-slate-400 uppercase text-[10px] tracking-[0.3em] font-bold">Respaldo Internacional • Gestión Local</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="bg-slate-50 p-12 rounded-[50px] transition hover:bg-white hover:shadow-xl hover:shadow-slate-100">
+                <div class="bg-white p-12 rounded-[50px] shadow-sm transition hover:shadow-xl hover:shadow-slate-200">
                     <div class="text-6xl font-extrabold text-blue-900 mb-4 tracking-tighter">65%</div>
                     <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 leading-tight">Cumplimiento de Oferta <br><span class="text-blue-900">DE VALOR</span></p>
                 </div>
-                <div class="bg-slate-50 p-12 rounded-[50px] transition hover:bg-white hover:shadow-xl hover:shadow-slate-100">
+                <div class="bg-white p-12 rounded-[50px] shadow-sm transition hover:shadow-xl hover:shadow-slate-200">
                     <div class="text-6xl font-extrabold text-slate-900 mb-4 tracking-tighter">+80</div>
                     <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Colaboradores <br>Altamente Expertos</p>
                 </div>
-                <div class="bg-slate-50 p-12 rounded-[50px] transition hover:bg-white hover:shadow-xl hover:shadow-slate-100">
+                <div class="bg-white p-12 rounded-[50px] shadow-sm transition hover:shadow-xl hover:shadow-slate-200">
                     <div class="text-6xl font-extrabold text-slate-900 mb-4 tracking-tighter">+300</div>
                     <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Clientes que <br>Confían en Nosotros</p>
                 </div>
@@ -134,11 +137,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: SERVICIOS -->
-    <section id="servicios" class="py-24 bg-slate-50">
+    <!-- SECCIÓN: SERVICIOS (Fondo Blanco) -->
+    <section id="servicios" class="py-24 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-16 text-center lg:text-left">
-                <h2 class="text-5xl font-bold mb-4 tracking-tighter">Estrategias de Protección</h2>
+                <h2 class="text-5xl font-bold mb-4 tracking-tighter text-blue-900">Estrategias de Protección</h2>
                 <p class="text-slate-500 max-w-lg">Diseñamos soluciones a medida para los desafíos operativos y humanos más exigentes de la industria.</p>
             </div>
             
@@ -174,8 +177,8 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: QUIÉRETE + -->
-    <section id="quierete" class="py-24 bg-white">
+    <!-- SECCIÓN: QUIÉRETE + (Fondo Slate Suave) -->
+    <section id="quierete" class="py-24 bg-slate-50">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-20 items-center mb-20">
                 <div class="flex-1">
@@ -184,17 +187,17 @@
                         <span class="h-10 w-[2px] bg-slate-200"></span>
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] leading-tight">Modelo de <br>Intervención Integral</div>
                     </div>
-                    <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    <p class="text-lg text-slate-600 leading-relaxed mb-8 font-light">
                         Nuestra propuesta se basa en entender qué es lo que el colaborador y su familia necesita de soporte para lograr una mejor calidad de vida integral en los aspectos de seguridad, salud física y mental, social y financiera.
                     </p>
-                    <div class="bg-slate-50 p-10 rounded-[50px] border border-slate-100 mb-10">
-                        <h4 class="font-bold text-xl mb-4">Propuesta de Valor</h4>
-                        <p class="text-slate-500 leading-relaxed mb-6">Estrategias diseñadas por un equipo multidisciplinario para fortalecer el vínculo entre la empresa y su capital humano.</p>
-                        <a href="#" class="inline-block bg-black text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl hover:bg-zinc-800 transition">Ver mi propuesta de valor</a>
+                    <div class="bg-white p-10 rounded-[50px] shadow-sm border border-slate-100 mb-10">
+                        <h4 class="font-bold text-xl mb-4 text-blue-900">Propuesta de Valor</h4>
+                        <p class="text-slate-500 leading-relaxed mb-8">Estrategias diseñadas por un equipo multidisciplinario para fortalecer el vínculo entre la empresa y su capital humano.</p>
+                        <a href="#" class="inline-block bg-black text-white px-10 py-5 rounded-2xl font-bold text-sm shadow-xl hover:bg-zinc-800 transition transform hover:-translate-y-1">Ver mi propuesta de valor</a>
                     </div>
                 </div>
 
-                <!-- Los 4 Pilares (Emojis Centrados) -->
+                <!-- Los 4 Pilares -->
                 <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                     <div class="p-10 bg-white border-2 rounded-[40px] pilar-seguro text-center transition hover:shadow-xl">
                         <div class="text-5xl mb-6 mx-auto">👷‍♂️</div>
@@ -221,27 +224,33 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: APLICATIVO -->
+    <!-- SECCIÓN: APLICATIVO (Fondo Azul Noche) -->
     <section id="aplicativo" class="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:30px_30px]"></div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-20">
                 <div class="flex-1">
-                    <h2 class="text-6xl font-bold tracking-tighter mb-8 leading-tight">El control total, <br><span class="text-blue-400 italic">siempre con usted.</span></h2>
+                    <h2 class="text-6xl font-bold tracking-tighter mb-8 leading-tight">APP LOCKTON <br><span class="text-blue-400 italic">Siempre con usted.</span></h2>
                     <p class="text-slate-400 text-lg leading-relaxed mb-10 max-w-lg">
                         Gestionar sus pólizas nunca fue tan intuitivo. Acceda a reembolsos, red de clínicas y soporte global con tecnología de vanguardia.
                     </p>
                     <div class="flex flex-wrap gap-6">
+                        <!-- App Store -->
                         <div class="group bg-white text-black px-8 py-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-slate-100 transition shadow-2xl">
                             <span class="text-3xl">🍎</span>
                             <div class="text-left"><p class="text-[10px] uppercase opacity-50 font-bold">App Store</p><p class="text-sm font-extrabold">Descargar</p></div>
+                        </div>
+                        <!-- Google Play -->
+                        <div class="group bg-zinc-800 text-white px-8 py-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-zinc-700 transition border border-zinc-700">
+                            <span class="text-3xl">🤖</span>
+                            <div class="text-left"><p class="text-[10px] uppercase opacity-40 font-bold">Google Play</p><p class="text-sm font-extrabold">Instalar</p></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Celular Premium -->
                 <div class="flex-1 flex justify-center">
-                    <div class="w-80 h-[600px] bg-zinc-950 rounded-[60px] border-[10px] border-zinc-800 shadow-[0_0_100px_rgba(59,130,246,0.3)] overflow-hidden relative">
+                    <div class="w-80 h-[600px] bg-zinc-950 rounded-[60px] border-[10px] border-zinc-800 shadow-[0_0_100px_rgba(59,130,246,0.2)] overflow-hidden relative">
                         <div class="w-full h-full bg-slate-50 flex flex-col">
                             <div class="h-8 w-full bg-zinc-800 flex justify-center items-end pb-1.5">
                                 <div class="w-20 h-5 bg-black rounded-full"></div>
@@ -271,28 +280,28 @@
                         <text x="0" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="62" letter-spacing="-2" fill="black">LOCKTON</text>
                     </svg>
                     <p class="text-xs text-slate-400 leading-relaxed font-medium">
-                        El corredor de seguros independiente más grande del mundo. Una perspectiva diferente centrada exclusivamente en el valor.
+                        El corredor de seguros independiente más grande del mundo. Una perspectiva diferente centrada exclusivamente en el valor de nuestros clientes.
                     </p>
                 </div>
                 <div>
-                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Navegación</h5>
+                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Estrategia</h5>
                     <ul class="space-y-4 text-xs font-semibold text-slate-500">
                         <li><a href="#inicio" class="hover:text-blue-900 transition">Inicio</a></li>
-                        <li><a href="#logros" class="hover:text-blue-900 transition">Hitos de Valor</a></li>
+                        <li><a href="#logros" class="hover:text-blue-900 transition">Logros Perú</a></li>
                         <li><a href="#servicios" class="hover:text-blue-900 transition">Servicios</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Contacto</h5>
+                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Soporte</h5>
                     <ul class="space-y-4 text-xs font-semibold text-slate-500">
                         <li class="flex items-center gap-2">📍 Lima, Perú</li>
                         <li class="flex items-center gap-2">✉️ contacto@lockton.com.pe</li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Redes</h5>
+                    <h5 class="text-[11px] font-bold uppercase tracking-[0.2em] text-black mb-8">Conectar</h5>
                     <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition italic">in</a>
+                        <a href="#" class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition italic font-bold">in</a>
                     </div>
                 </div>
             </div>
@@ -303,11 +312,82 @@
                 </p>
                 <div class="flex space-x-8 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                     <a href="#" class="hover:text-black transition">Privacidad</a>
-                    <a href="#" class="hover:text-black transition">Soporte</a>
+                    <a href="#" class="hover:text-black transition">Legal</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Script del Canvas Inteligente -->
+    <script>
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleCount = 45;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.size = 1.5;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 51, 102, 0.08)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                
+                for (let j = index + 1; j < particles.length; j++) {
+                    const dx = p.x - particles[j].x;
+                    const dy = p.y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 200) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 51, 102, ${0.1 * (1 - dist/200)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
